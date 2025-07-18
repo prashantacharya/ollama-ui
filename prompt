@@ -1,0 +1,21 @@
+I want to remove the nth node from the end of the linked list. 
+What is wrong with the implementation? I believe it is failing in like the edge cases.
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        nth_node_after = head
+        curr = head
+        
+        for i in range(n):
+            nth_node_after = nth_node_after.next
+
+        prev = None
+        while nth_node_after != None:
+            prev = curr
+            curr = curr.next
+            nth_node_after = nth_node_after.next
+
+        if prev.next == None and curr and curr.next != None:
+            prev.next = curr.next
+
+        return head
